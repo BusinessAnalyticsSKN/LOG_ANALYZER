@@ -42,7 +42,3 @@ b.	Transitioning Roles: Discuss best practices for handling transitions in manag
 a.	Emphasize the importance of clear, concise commit messages.
 b.	Stress the need for regular commits and frequent synchronization with the main repository.
 c.	Discuss the importance of adhering to a workflow (like Git Flow) for consistency.
-„Eksperyment na potrzeby SKN >> README.md
-git status
-
-echo „Eksperyment na potrzeby SKN
