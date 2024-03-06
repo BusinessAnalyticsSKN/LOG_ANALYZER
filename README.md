@@ -1,44 +1,27 @@
 # LOG_ANALYZER
-SAS VIYA
 
-1.	Software Installation and Bash Configuration:
-a.	Install Git: Explain the process of installing Git, which is essential for version control.
-b.	Configure Bash: Bash (Bourne Again SHell) is often the default shell on Linux and macOS. Discuss setting up a simple Bash environment for Git commands.
+This repository contains an advanced SAS script by Karol Przanowski, dedicated to parsing and analyzing SAS Viya log files. This Log Analyzer is an invaluable tool for SAS developers, system administrators, and data analysts who seek to optimize SAS Viya applications by gaining deeper insights into their execution performance. It automates the tedious task of combing through extensive log files, extracting key performance metrics such as execution time, CPU usage, system time, memory, and OS memory allocation.
 
-2.	Creating a GitHub Repository for Multiple Users:
-a.	GitHub Repository Setup: Demonstrate how to create a new repository on GitHub.
-b.	User Access: Explain how to add collaborators to the repository and set appropriate access levels (e.g., read, write, admin).
 
-3.	Initializing and Managing a Log Analyzer Project:
-a.	Initializing Repository: Show how to initialize a Git repository for the initial version of a log analyzer project.
-b.	Updating Code: Present the process for updating the project using Git commands (git add, git commit, git push).
+Log_analyzer_initial_version is a script designed as a log analyzer tool. Its primary purpose is to parse and analyze log files generated during SAS Viya code executions to extract and report on various metrics such as real time, CPU time, system time, memory usage, and OS memory consumption. It focuses on understanding the performance and efficiency of SAS Viya code executions within specified processes or macro calls.
 
-4.	Collaboration using Pull Requests and Commits:
-a.	Pull Requests: Teach how to create and manage pull requests on GitHub for proposing changes.
-b.	Committing Changes: Explain the importance of committing changes with meaningful messages (git commit).
-c.	Code Review and Merge: Discuss how to review code changes in pull requests and merge them into the main branch.
+Here's a breakdown of its key functionalities:
 
-5.	Branch Management and Workflow:
-a.	Branch Creation: Show how to create and switch to new branches (git branch, git checkout).
-b.	Merge and Rebase: Explain the difference between merging and rebasing, particularly in the context of updating a feature branch with changes from the master/main branch.
+**Initialization:** It starts by defining file paths and log file names using SAS macro variables (%let statements) to specify the location of the logs to be analyzed.
 
-6.	Direct Access and Modifications to the Master Branch:
-a.	Access Control: Emphasize the best practices for controlling access to the master/main branch.
-b.	Direct Changes: Discuss the implications and procedures for making direct changes to the master branch (not recommended in most workflows).
+**Data Step for Log Parsing:** The data step reads through the specified log file line by line, extracting relevant information based on certain keywords found in the logs. This includes:
 
-7.	Working with Code Locally:
-a.	Cloning and Downloading Code: Demonstrate how to clone a repository and download its code to a local machine (git clone).
-b.	Making and Pushing Changes: Guide through the process of making changes, committing them, and pushing to a remote repository.
+Identifying and extracting code snippets associated with MPRINT and MLOGIC statements.
+Capturing execution times, CPU times, system times, memory, and OS memory usage from NOTE: lines that indicate total process time.
+Tracking the nesting level of macro executions and loop iterations within the log file to understand the structure of the executed SAS code.
+Data Transformation and Aggregation:
 
-8.	Handling Pull Requests and Code Reviews:
-a.	Accepting Pull Requests: Show how to review and accept pull requests on GitHub.
-b.	Code Review Practices: Discuss the importance of thorough code reviews and maintaining code quality.
+Using a proc sql step to determine the maximum nesting level of macros or loops encountered in the log, which aids in structuring the final report.
+Preparing a secondary dataset (Data_log2) that structures the parsed log data into a format suitable for reporting, including aggregating code snippets and performance metrics under their respective macro names and nesting levels.
 
-9.	Handling Managerial Changes:
-a.	Role of a Manager: Highlight the responsibilities of a manager in overseeing a project's progress and maintaining its integrity.
-b.	Transitioning Roles: Discuss best practices for handling transitions in managerial roles, ensuring continuity and stability in the project.
+**Reporting:**
+The script utilizes ODS (Output Delivery System) HTML output to generate a detailed report of the log analysis. This report includes tables created by proc tabulate that summarize performance metrics (like real time, CPU time, etc.) across different levels of macro execution and code snippets, providing insights into the efficiency and resource usage of the SAS Viya processes.
+The report is saved as an HTML file, making it easily accessible for review.
 
-10.	General Best Practices:
-a.	Emphasize the importance of clear, concise commit messages.
-b.	Stress the need for regular commits and frequent synchronization with the main repository.
-c.	Discuss the importance of adhering to a workflow (like Git Flow) for consistency.
+
+In summary, this SAS script automates the detailed analysis of SAS Viya log files, focusing on performance metrics and the hierarchical structure of SAS code execution. It enables users to quickly identify potential bottlenecks or areas for optimization within their SAS Viya code by providing a structured and summarized view of log data.
