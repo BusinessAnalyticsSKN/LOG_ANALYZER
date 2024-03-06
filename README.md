@@ -25,3 +25,6 @@ The report is saved as an HTML file, making it easily accessible for review.
 
 
 In summary, this SAS script automates the detailed analysis of SAS Viya log files, focusing on performance metrics and the hierarchical structure of SAS code execution. It enables users to quickly identify potential bottlenecks or areas for optimization within their SAS Viya code by providing a structured and summarized view of log data.
+
+
+Adding an example of change to the file README.md.
